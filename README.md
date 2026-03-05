@@ -1,38 +1,38 @@
-# 📱 Lecturer-Student Management System
+# Lecturer-Student Management System
 
-A comprehensive mobile application for managing classroom activities, built with **Python** and **Kivy** framework. This app provides role-based access for Lecturers and Students with complete classroom management features.
+A comprehensive mobile application for managing classroom activities, built with Python and Kivy framework. This application provides role-based access for Lecturers and Students with complete classroom management features.
 
-## ✨ Features
+## Features
 
-### 👩‍🏫 Lecturer Features
-- 📢 **Announcements** - Create, edit, delete announcements with timestamps
-- 📚 **Resources** - Upload and manage study materials (PDF, PPT, Notes, Video links)
-- 📝 **Assignments** - Create assignments, track submissions, and assign marks
-- 📊 **Test Marks** - Add, edit, and manage test scores
-- 👥 **Student Management** - Add, edit, delete student records
-- ❓ **Q&A Dashboard** - View and respond to student questions
+### Lecturer Features
+- Announcements - Create, edit, delete announcements with timestamps
+- Resources - Upload and manage study materials (PDF, PPT, Notes, Video links)
+- Assignments - Create assignments, track submissions, and assign marks
+- Test Marks - Add, edit, and manage test scores
+- Student Management - Add, edit, delete student records
+- Q&A Dashboard - View and respond to student questions
 
-### 👨‍🎓 Student Features
-- 📢 View announcements
-- 📚 Search and access resources
-- 📝 View assignments and submission status
-- 📊 Check test marks and grades
-- ❓ Ask questions and view lecturer responses
-- 🔐 Secure login and registration
+### Student Features
+- View announcements
+- Search and access resources
+- View assignments and submission status
+- Check test marks and grades
+- Ask questions and view lecturer responses
+- Secure login and registration
 
-## 🚀 Getting Started
+## Installation
 
 ### Prerequisites
 
 - Python 3.8 or higher
 - pip (Python package manager)
 
-### Installation
+### Setup
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/[your-username]/lecturer-student-manager.git
-cd lecturer-student-manager
+git clone https://github.com/abhisheksanganal366-ui/ClassLinker.git
+cd ClassLinker
 ```
 
 2. Install dependencies:
@@ -40,7 +40,7 @@ cd lecturer-student-manager
 pip install -r requirements.txt
 ```
 
-### Running the App
+### Running the Application
 
 #### Desktop Testing (Windows/Mac/Linux)
 ```bash
@@ -49,7 +49,7 @@ python main.py
 
 #### Building for Android
 
-**Note:** Building APK requires a Linux environment (WSL on Windows or native Linux/Mac).
+Building APK requires a Linux environment (WSL on Windows or native Linux/Mac).
 
 1. Install Buildozer:
 ```bash
@@ -68,10 +68,10 @@ buildozer android debug
 buildozer android debug deploy run
 ```
 
-## 📂 Project Structure
+## Project Structure
 
 ```
-lecturer-student-manager/
+ClassLinker/
 ├── main.py                    # Main application entry point
 ├── database.py                # SQLite database operations
 ├── screens.py                 # All UI screens
@@ -84,17 +84,17 @@ lecturer-student-manager/
 └── LICENSE                    # MIT License
 ```
 
-## 🎓 Default Login Credentials
+## Default Login Credentials
 
 ### Lecturer Account
-- Email: `lecturer@app.com`
-- Password: `lecturer123`
+- Email: `admin@123`
+- Password: `1234`
 
 ### Student Account
 - Register through the app or
 - Added by lecturer (default password: `student123`)
 
-## 🔐 Security Features
+## Security Features
 
 - Password hashing using SHA256
 - Role-based access control
@@ -102,21 +102,21 @@ lecturer-student-manager/
 - Students cannot access lecturer features
 - Data validation on all inputs
 
-## 🛠️ Technologies Used
+## Technologies Used
 
-- **Python 3.8+** - Programming language
-- **Kivy 2.3.0** - Cross-platform UI framework
-- **SQLite** - Embedded database for data persistence
-- **Buildozer** - Android packaging tool
-- **SHA256** - Password hashing for security
+- Python 3.8+
+- Kivy 2.3.0 - Cross-platform UI framework
+- SQLite - Embedded database for data persistence
+- Buildozer - Android packaging tool
+- SHA256 - Password hashing for security
 
-## 💡 Key Features Explained
+## Key Features Explained
 
 ### Database-Based Assignment System
 Unlike traditional file upload systems, this app uses a database approach where:
 - Lecturers manually mark submissions as "Submitted" or "Not Submitted"
 - Marks are entered directly into the system
-- No file storage required - perfect for mobile devices
+- No file storage required
 - Instant updates and real-time tracking
 
 ### Real-Time Q&A System
@@ -131,47 +131,39 @@ Unlike traditional file upload systems, this app uses a database approach where:
 - Direct links to external resources
 - No local file storage needed
 
-## 📱 Screenshots
-
-*Screenshots will be added after testing*
-
-## 🧪 Testing
+## Testing
 
 See [TESTING_GUIDE.md](TESTING_GUIDE.md) for comprehensive testing instructions.
 
 Quick test:
 ```bash
 python main.py
-# Login with: lecturer@app.com / lecturer123
+# Login with: admin@123 / 1234
 ```
 
-## 🤝 Contributing
+## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+Contributions, issues, and feature requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👤 Author
+## Author
 
-**Abhishek R Sanganal**
+Abhishek R Sanganal
 
-- GitHub: [@your-github-username](https://github.com/your-github-username)
+- GitHub: [@abhisheksanganal366-ui](https://github.com/abhisheksanganal366-ui)
 
-## 🌟 Show your support
+## Documentation
 
-Give a ⭐️ if you like this project!
+- [Quick Start Guide](QUICKSTART.md)
+- [Testing Guide](TESTING_GUIDE.md)
+- [Implementation Status](IMPLEMENTATION_STATUS.md)
+- [Project Summary](PROJECT_SUMMARY.md)
+- [Deployment Checklist](DEPLOYMENT_CHECKLIST.md)
 
-## 📚 Documentation
-
-- [Quick Start Guide](QUICKSTART.md) - Get started in 2 minutes
-- [Testing Guide](TESTING_GUIDE.md) - Comprehensive testing instructions
-- [Implementation Status](IMPLEMENTATION_STATUS.md) - Development details
-- [Project Summary](PROJECT_SUMMARY.md) - Complete project overview
-- [Deployment Checklist](DEPLOYMENT_CHECKLIST.md) - GitHub upload guide
-
-## 📚 Learn More
+## Additional Resources
 
 - [Kivy Documentation](https://kivy.org/doc/stable/)
 - [Buildozer Documentation](https://buildozer.readthedocs.io/)
