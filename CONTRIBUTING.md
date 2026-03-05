@@ -1,6 +1,6 @@
-# Contributing to My Android App
+# Contributing to Lecturer-Student Management System
 
-Thank you for considering contributing to this project! 
+Thank you for considering contributing to this project.
 
 ## How to Contribute
 
@@ -28,9 +28,9 @@ If you find a bug, please open an issue with:
 
 ## Feature Requests
 
-Feature requests are welcome! Please open an issue describing:
+Feature requests are welcome. Please open an issue describing:
 - The feature you'd like to see
 - Why it would be useful
 - How it might work
 
-Thank you for your contributions! 🎉
+Thank you for your contributions.

@@ -1,6 +1,6 @@
 # Testing Guide - Lecturer-Student Management System
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install Dependencies
 ```bash
@@ -12,18 +12,18 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## 👥 Test Accounts
+## Test Accounts
 
 ### Default Lecturer Account
-- **Email:** lecturer@app.com
-- **Password:** lecturer123
+- Email: admin@123
+- Password: 1234
 
 ### Student Accounts
 Students need to register through the app or can be added by the lecturer.
 
-**Default password for lecturer-added students:** student123
+Default password for lecturer-added students: student123
 
-## 🧪 Testing Scenarios
+## Testing Scenarios
 
 ### For Lecturer Role
 
@@ -131,7 +131,7 @@ Students need to register through the app or can be added by the lecturer.
 - Click "Submit Question"
 - View previous questions and answers
 
-## 🔍 Database Verification
+## Database Verification
 
 The app creates a SQLite database file: `lecturer_student.db`
 
@@ -143,7 +143,7 @@ SELECT * FROM users;
 SELECT * FROM announcements;
 ```
 
-## 📱 Testing on Android
+## Testing on Android
 
 ### Build APK
 ```bash
@@ -155,7 +155,7 @@ buildozer android debug
 buildozer android debug deploy run
 ```
 
-## ✅ Feature Checklist
+## Feature Checklist
 
 ### Lecturer Features
 - [ ] Login with default account
@@ -190,38 +190,38 @@ buildozer android debug deploy run
 - [ ] Timestamps are recorded correctly
 - [ ] Relationships between tables work
 
-## 🐛 Common Issues
+## Common Issues
 
 ### Issue: "No module named 'kivy'"
-**Solution:** Run `pip install -r requirements.txt`
+Solution: Run `pip install -r requirements.txt`
 
 ### Issue: Database locked
-**Solution:** Close all instances of the app and restart
+Solution: Close all instances of the app and restart
 
 ### Issue: Screen doesn't update
-**Solution:** The `on_enter()` method rebuilds UI automatically
+Solution: The `on_enter()` method rebuilds UI automatically
 
 ### Issue: Buildozer fails on Windows
-**Solution:** Use WSL (Windows Subsystem for Linux) for building APK
+Solution: Use WSL (Windows Subsystem for Linux) for building APK
 
-## 📊 Performance Testing
+## Performance Testing
 
 - Test with 50+ students
 - Test with 100+ announcements
 - Test search with large datasets
 - Verify scroll performance
 
-## 🎯 Success Criteria
+## Success Criteria
 
-✅ All features work as specified
-✅ No crashes or errors
-✅ Data persists correctly
-✅ UI is responsive and intuitive
-✅ Role-based access is enforced
-✅ Search functionality works
-✅ Marks calculation is accurate
+All features work as specified
+No crashes or errors
+Data persists correctly
+UI is responsive and intuitive
+Role-based access is enforced
+Search functionality works
+Marks calculation is accurate
 
-## 📝 Notes
+## Notes
 
 - Default window size for desktop: 400x700 (mobile-like)
 - Database file is created automatically
