@@ -384,6 +384,17 @@ class Database:
         conn.close()
         return resources
     
+    def delete_resource(self, resource_id):
+        """Delete a resource"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute('DELETE FROM resources WHERE id = ?', (resource_id,))
+        
+        conn.commit()
+        conn.close()
+        return True
+    
     # Assignments
     def add_assignment(self, title, description, due_date, total_marks, lecturer_id):
         """Add new assignment"""

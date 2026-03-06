@@ -288,7 +288,7 @@ class ResourcesScreen(Screen):
         card = BoxLayout(
             orientation='vertical',
             size_hint_y=None,
-            height=140,
+            height=170,
             padding=10,
             spacing=5
         )
@@ -296,30 +296,75 @@ class ResourcesScreen(Screen):
         card.add_widget(Label(
             text=f"[b]{resource[1]}[/b]",
             markup=True,
-            size_hint_y=0.25,
+            size_hint_y=0.2,
             halign='left'
         ))
         
         card.add_widget(Label(
             text=resource[2] or 'No description',
-            size_hint_y=0.3,
+            size_hint_y=0.25,
             halign='left',
             text_size=(350, None)
         ))
         
         card.add_widget(Label(
             text=f"Type: {resource[3]} | {resource[5][:16]}",
-            size_hint_y=0.2,
+            size_hint_y=0.15,
             font_size='12sp'
         ))
         
         card.add_widget(Label(
             text=f"Link: {resource[4]}",
-            size_hint_y=0.25,
+            size_hint_y=0.2,
             font_size='11sp'
         ))
         
+        # Delete button
+        delete_btn = Button(
+            text='Delete',
+            size_hint_y=0.2,
+            background_color=(0.8, 0.2, 0.2, 1)
+        )
+        delete_btn.bind(on_press=lambda x: self.confirm_delete(resource[0], resource[1]))
+        card.add_widget(delete_btn)
+        
         self.resources_layout.add_widget(card)
+    
+    def confirm_delete(self, resource_id, resource_name):
+        """Show confirmation dialog before deleting"""
+        content = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        
+        content.add_widget(Label(
+            text=f'Are you sure you want to delete:\n"{resource_name}"?',
+            size_hint_y=0.7
+        ))
+        
+        btn_layout = BoxLayout(size_hint_y=0.3, spacing=10)
+        
+        def delete_confirmed(x):
+            db.delete_resource(resource_id)
+            popup.dismiss()
+            self.build_ui()
+        
+        delete_btn = Button(
+            text='Delete',
+            background_color=(0.8, 0.2, 0.2, 1)
+        )
+        delete_btn.bind(on_press=delete_confirmed)
+        btn_layout.add_widget(delete_btn)
+        
+        cancel_btn = Button(text='Cancel')
+        cancel_btn.bind(on_press=lambda x: popup.dismiss())
+        btn_layout.add_widget(cancel_btn)
+        
+        content.add_widget(btn_layout)
+        
+        popup = Popup(
+            title='Confirm Delete',
+            content=content,
+            size_hint=(0.8, 0.4)
+        )
+        popup.open()
     
     def show_add_popup(self, instance):
         content = BoxLayout(orientation='vertical', padding=10, spacing=10)
@@ -1210,6 +1255,59 @@ class ViewAnnouncementsScreen(Screen):
         db.mark_announcement_as_viewed(announcement_id, student_id)
         self.build_ui()  # Refresh to remove star
     
+    def show_announcement_detail(self, announcement, student_id=None):
+        """Show full announcement content in a popup"""
+        # Mark as viewed if student_id provided
+        if student_id:
+            db.mark_announcement_as_viewed(announcement[0], student_id)
+        
+        content = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        
+        # Title
+        content.add_widget(Label(
+            text=f"[b]{announcement[1]}[/b]",
+            markup=True,
+            size_hint_y=0.15,
+            font_size='18sp'
+        ))
+        
+        # Full content in scrollable view
+        scroll = ScrollView(size_hint=(1, 0.7))
+        content_label = Label(
+            text=announcement[2],
+            size_hint_y=None,
+            halign='left',
+            valign='top',
+            text_size=(350, None)
+        )
+        content_label.bind(texture_size=content_label.setter('size'))
+        scroll.add_widget(content_label)
+        content.add_widget(scroll)
+        
+        # Date and author
+        content.add_widget(Label(
+            text=f"By: {announcement[4]} | {announcement[3][:16]}",
+            size_hint_y=0.1,
+            font_size='12sp'
+        ))
+        
+        # Close button
+        close_btn = Button(text='Close', size_hint_y=0.15)
+        content.add_widget(close_btn)
+        
+        popup = Popup(
+            title='Announcement Details',
+            content=content,
+            size_hint=(0.9, 0.8)
+        )
+        close_btn.bind(on_press=popup.dismiss)
+        
+        # Refresh screen after closing to update star indicator
+        if student_id:
+            popup.bind(on_dismiss=lambda x: self.build_ui())
+        
+        popup.open()
+    
     def build_ui(self):
         self.clear_widgets()
         
@@ -1271,8 +1369,10 @@ class ViewAnnouncementsScreen(Screen):
                 valign='middle'
             ))
             
+            # Show preview of content (first 100 characters)
+            preview_text = ann[2][:100] + "..." if len(ann[2]) > 100 else ann[2]
             content.add_widget(Label(
-                text=ann[2],
+                text=preview_text,
                 size_hint_y=0.5,
                 halign='left',
                 valign='middle',
@@ -1287,9 +1387,11 @@ class ViewAnnouncementsScreen(Screen):
             
             card.add_widget(content)
             
-            # Mark as viewed when clicked
-            if current_user and is_new:
-                card.bind(on_press=lambda x, aid=ann[0], uid=current_user['id']: self.mark_and_refresh(aid, uid))
+            # Show full content when clicked
+            if current_user:
+                card.bind(on_press=lambda x, a=ann, uid=current_user['id']: self.show_announcement_detail(a, uid))
+            else:
+                card.bind(on_press=lambda x, a=ann: self.show_announcement_detail(a))
             
             announcements_layout.add_widget(card)
         
